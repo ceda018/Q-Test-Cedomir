@@ -1,1 +1,14 @@
-<p>list-item works!</p>
+<div class="card-container">
+
+    <a  class="card" target="_blank" rel="noopener" [routerLink]="['/post', item.id]">
+      <h2>{{ item[itemHeading] }}</h2>  <span *ngIf="item[itemUser]?.name" class="card__user"> by {{item[itemUser]?.name}} </span>
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+
+    <div *ngIf="subItems && subItemsProperty" class="q-comments">
+      <h3 *ngIf="subItemstTitle">{{subItemstTitle}}</h3>
+      <p *ngFor="let subItem of subItems" >{{subItem[subItemsProperty]}}</p>
+    </div>
+
+
+</div>

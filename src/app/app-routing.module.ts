@@ -4,8 +4,9 @@ import { PostComponent } from './post/post/post.component';
 import { PostsListsComponent } from './post/posts-lists/posts-lists.component';
 
 const routes: Routes = [
-  {path: 'post', component: PostComponent},
-  {path: 'posts', component: PostsListsComponent}
+  {path: 'posts', component: PostsListsComponent},
+  {path: 'post/:id', component: PostComponent},
+  {path: '', redirectTo: '/posts', pathMatch: 'full'}
 ];
 
 @NgModule({

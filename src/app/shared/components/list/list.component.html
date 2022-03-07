@@ -1,1 +1,9 @@
-<p>list works!</p>
+<ng-container *ngFor="let item of list">
+  <q-list-item
+    [item]="item"
+    [itemHeading]="itemTitleProperty"
+    [itemUser]="user"
+    [subItemstTitle]="subListArray"
+    [subItems]="item[subListArray]"
+    [subItemsProperty]="subListProperty"></q-list-item>
+</ng-container>
