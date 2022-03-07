@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 
 import { PostsService } from '../../core/services/posts.service';
@@ -11,11 +12,41 @@ import { Post } from '../../shared/models/post.model';
 export class PostsListsComponent implements OnInit {
 
   posts$!: Observable<Array<Post>>;
-  postsObject!: Array<Post>;
+  postsArrayOfObjects!: Array<Post>;
+  postsArrayOfObjectsCopy!: Array<Post>;
 
-  constructor( public postSvc: PostsService) {}
+  search!: FormGroup;
+
+  constructor(
+    public postSvc: PostsService,
+    public fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.posts$ = this.postSvc.getPostsWithMeta();
+    this.search = this.fb.group(
+      {serachByUserName: ['']}
+    );
+
+
+    this.posts$ = this.postSvc.getPostsWithMeta().pipe(
+      map(posts => this.postsArrayOfObjects = this.postsArrayOfObjectsCopy = posts)
+    );
+
+    this.search.get('serachByUserName')?.valueChanges.subscribe(
+      (value) => {
+        this.findByUserName(value);
+      });
+  }
+
+  findByUserName(userName: string = '') {
+
+    this.postsArrayOfObjects = this.postsArrayOfObjectsCopy;
+
+    if(userName !== '') {
+      this.postsArrayOfObjects = this.postsArrayOfObjects.filter((post: Post)=>{
+        return post.user?.name.toLowerCase().indexOf(userName.toLowerCase()) != -1;
+      });
+    }
+
   }
 }

@@ -1,6 +1,11 @@
-<ng-container *ngIf="(posts$ | async) as postsObject">
+<div class="q-search-form">
+  <form [formGroup]="search">
+    <input type="text" placeholder="Serach by User Name" formControlName="serachByUserName">
+  </form>
+</div>
+<ng-container *ngIf="posts$ | async">
   <q-list
-  [list]="postsObject"
+  [list]="postsArrayOfObjects"
   [itemTitleProperty]="'title'"
   [user]="'user'"
   [subListArray]="'comments'"
