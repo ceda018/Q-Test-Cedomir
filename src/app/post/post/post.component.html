@@ -1,1 +1,25 @@
-<p>post works!</p>
+<ng-container *ngIf="(post$ | async) as post">
+
+<div class="q-post-wrapper">
+  <h1 class="card">{{post.title}}</h1>
+
+  <p class="card">{{post.body}}</p>
+
+  <div class="small-card">{{post.user?.name}}</div>
+  <div><small>{{post.user?.email}}</small></div>
+</div>
+
+<div class="q-comments-wrapper">
+  <ng-container *ngIf="post.comments">
+    <h2>Comments:</h2>
+    <div *ngFor="let comment of post.comments">
+      <h4>{{ comment.name }}</h4>
+      <p>{{ comment.body }}</p>
+      <small class="q-comment-email">{{ comment.email }}</small>
+    </div>
+
+  </ng-container>
+</div>
+
+</ng-container>
+

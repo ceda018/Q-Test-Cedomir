@@ -15,7 +15,7 @@ export class PostsService {
   }
 
   getPost(id: number) {
-    const url = `${this.apiUrl}/post?id=${id}`;
+    const url = `${this.apiUrl}/posts/${id}?_expand=user&_embed=comments`;
     return this.http.get<Post>(url);
   }
 

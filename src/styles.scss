@@ -63,7 +63,30 @@ p {
   max-width: 960px;
   flex-direction: column;
   align-items: center;
+
+  .q-post-wrapper {
+    margin-bottom: 32px;
+    h1{
+      text-transform: capitalize;
+      font-size: 2rem;
+    }
+  }
+
+  .q-comments-wrapper{
+    h2 {
+      margin-bottom: 24px;
+    }
+    h4{
+      text-transform: capitalize;
+    }
+    small.q-comment-email {
+      display: block;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+  }
 }
+
 
 svg.material-icons {
   height: 24px;
@@ -298,7 +321,7 @@ svg#clouds {
   }
 
   .card:not(.highlight-card) {
-    height: 16px;
+    height: auto;
     margin: 8px 0;
   }
 
