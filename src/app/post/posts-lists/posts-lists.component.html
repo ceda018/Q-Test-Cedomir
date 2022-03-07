@@ -1,7 +1,10 @@
-<q-list
+<ng-container *ngIf="(posts$ | async) as postsObject">
+  <q-list
   [list]="postsObject"
   [itemTitleProperty]="'title'"
   [user]="'user'"
   [subListArray]="'comments'"
   [subListProperty]="'body'"
   ></q-list>
+</ng-container>
+
